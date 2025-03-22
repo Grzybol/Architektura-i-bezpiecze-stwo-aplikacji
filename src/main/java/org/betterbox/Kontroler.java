@@ -3,6 +3,8 @@ package org.betterbox;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class Kontroler {
     @RequestMapping("/tabela")
@@ -23,5 +25,30 @@ public class Kontroler {
                 "</tbody>" +
                 "</table>";
         return tabela;
+    }
+    @RequestMapping("/produkt")
+    public String produkt() {
+        Produkt produkt = new Produkt(1, "Telewizor", 2000.00);
+        return produkt.toString();
+    }
+    @RequestMapping("/pracownik")
+    public String pracownik() {
+        return new Pracownik(1, "Jan", "Kowalski", "Sprzedawca").toString();
+    }
+    @RequestMapping("/produkty")
+    public List<Produkt> produkty() {
+        return new ProduktyStatyczneDane().pobierzProdukty();
+    }
+    @RequestMapping("/produktyHTML")
+    public String produktyHTML() {
+        return new ProduktyStatyczneDane().pobierzProduktyHTML();
+    }
+    @RequestMapping("/pracownicy")
+    public List<Pracownik> pracownicy() {
+        return new PracownicyStatyczneDane().pobierzPracownikow();
+    }
+    @RequestMapping("/pracownicyHTML")
+    public String pracownicyHTML() {
+        return new PracownicyStatyczneDane().pobierzPracownikowHTML();
     }
 }
